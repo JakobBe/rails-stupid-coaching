@@ -3,12 +3,19 @@ class QuestionsControllerController < ApplicationController
     @time = Time.new
     @your_message = params[:message]
 
-    if @your_message.end_with? "?"
-      @coach_answer = "Silly question, get dressed and go to work!"
-    elsif @your_message == "I am going to work right now!"
-      @coach_answer = "You make me proud!"
+
+    if @your_message != @your_message.upcase
+      if @your_message.end_with? "?"
+        @coach_answer = "Silly question, get dressed and go to work!"
+      elsif @your_message == "I am going to work right now!"
+        @coach_answer = "You make me proud!"
+      else
+        @coach_answer = "I don't care, get dressed and go to work!"
+      end
+    elsif @your_message == "I AM GOING TO WORK RIGHT NOW!"
+      @coach_answer = "YOU MAKE ME PROUD!"
     else
-      @coach_answer = "I don't care, get dressed and go to work!"
+      @coach_answer = "I can feel your motivation!"
     end
   end
 
